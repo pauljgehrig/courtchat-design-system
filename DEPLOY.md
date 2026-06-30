@@ -49,13 +49,24 @@ The consumer needs shadcn + Tailwind v4 already set up.
 ### Option A — direct URL
 
 ```bash
-npx shadcn@latest add https://courtchat-design-system.vercel.app/r/theme.json
-npx shadcn@latest add https://courtchat-design-system.vercel.app/r/button.json
+# 1. Adopt brand tokens FIRST, with --overwrite (required — see note below).
+npx shadcn@latest add https://courtchat-design-system.vercel.app/r/theme.json --overwrite -y
+
+# 2. Then add components.
+npx shadcn@latest add https://courtchat-design-system.vercel.app/r/button.json -y
 ```
 
-The `theme` item merges the brand tokens into the consumer's `globals.css`
-(via `cssVars`, non-destructive). Every component declares the theme as a
-dependency, so pulling any component pulls the theme automatically.
+The `theme` item merges brand tokens into the consumer's `globals.css` via
+`cssVars`. **You must pass `--overwrite` on the theme step.** shadcn's default
+merge only *adds* tokens it doesn't already see — it will not replace a
+consumer's existing `--primary`/`--background`/etc. (which `shadcn init` seeds).
+Without `--overwrite` you get a half-applied brand: the additions (`--success`,
+`--warning`, fonts) land, but the signature purple `--primary` never takes
+effect. `--overwrite` updates the values in place and preserves the consumer's
+`@import "tailwindcss"`, `.dark` block, and other content.
+
+Components declare the theme as a `registryDependency`, but a dependency is
+fetched *without* `--overwrite`, so always run the theme step (1) explicitly.
 
 ### Option B — namespace (nicer DX)
 
@@ -69,11 +80,11 @@ Register the namespace once in the consumer's `components.json`:
 }
 ```
 
-Then:
+Then (same `--overwrite` rule applies to the theme step):
 
 ```bash
-npx shadcn@latest add @courtchat/theme
-npx shadcn@latest add @courtchat/button
+npx shadcn@latest add @courtchat/theme --overwrite -y
+npx shadcn@latest add @courtchat/button -y
 ```
 
 Consumers receive **source** they own and can customize. Re-running `add`

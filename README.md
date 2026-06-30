@@ -90,22 +90,31 @@ The registry is hosted at `https://courtchat-design-system.vercel.app` (the show
 In a repo that already has shadcn + Tailwind v4 configured:
 
 ```bash
-# Pull brand tokens only
-npx shadcn@latest add https://courtchat-design-system.vercel.app/r/theme.json
+# 1. Adopt the brand tokens FIRST, with --overwrite.
+#    --overwrite is required: shadcn's default merge only ADDS new tokens and
+#    will NOT replace your existing --primary/--background/etc. Without it you
+#    get a half-applied brand (purple primary never takes effect).
+npx shadcn@latest add https://courtchat-design-system.vercel.app/r/theme.json --overwrite -y
 
-# Pull a component — also pulls theme automatically
-npx shadcn@latest add https://courtchat-design-system.vercel.app/r/button.json
-npx shadcn@latest add https://courtchat-design-system.vercel.app/r/alert.json
-npx shadcn@latest add https://courtchat-design-system.vercel.app/r/table.json
+# 2. Then add components.
+npx shadcn@latest add https://courtchat-design-system.vercel.app/r/button.json -y
+npx shadcn@latest add https://courtchat-design-system.vercel.app/r/alert.json -y
+npx shadcn@latest add https://courtchat-design-system.vercel.app/r/table.json -y
 # etc. — one command per component
 ```
+
+`--overwrite` is non-destructive to structure: it updates the brand token
+*values* in `:root` but preserves your `@import "tailwindcss"`, your `.dark`
+block, and any tokens it doesn't define. Components declare the theme as a
+dependency, but a dependency is pulled *without* `--overwrite`, so always run
+the theme step yourself (step 1) to actually adopt the brand colors.
 
 **What you get:**
 
 - You receive **source files** — you own and customize them. This is not an npm package.
 - Re-run `add` to pull an updated version from the registry.
 - **No runtime npm dependency** on this repo.
-- Each component's `registryDependencies` and `dependencies` fields declare what they need, so shadcn installs those automatically (e.g. theme tokens, Radix primitives).
+- Each component's `registryDependencies` and `dependencies` fields declare what they need, so shadcn installs those automatically (the theme item, Radix primitives, `class-variance-authority`).
 
 ---
 
