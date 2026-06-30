@@ -1,0 +1,171 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "courtchat",
+  "homepage": "https://courtchat-design-system.vercel.app",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:style",
+      "title": "CourtChat brand theme",
+      "description": "Purple OKLCH token layer + @theme mapping. Merges into the consumer's existing globals.css via cssVars — it does not overwrite it.",
+      "cssVars": {
+        "theme": {
+          "color-background": "var(--background)",
+          "color-foreground": "var(--foreground)",
+          "color-card": "var(--card)",
+          "color-card-foreground": "var(--card-foreground)",
+          "color-popover": "var(--popover)",
+          "color-popover-foreground": "var(--popover-foreground)",
+          "color-primary": "var(--primary)",
+          "color-primary-foreground": "var(--primary-foreground)",
+          "color-secondary": "var(--secondary)",
+          "color-secondary-foreground": "var(--secondary-foreground)",
+          "color-muted": "var(--muted)",
+          "color-muted-foreground": "var(--muted-foreground)",
+          "color-accent": "var(--accent)",
+          "color-accent-foreground": "var(--accent-foreground)",
+          "color-destructive": "var(--destructive)",
+          "color-destructive-foreground": "var(--destructive-foreground)",
+          "color-success": "var(--success)",
+          "color-success-foreground": "var(--success-foreground)",
+          "color-warning": "var(--warning)",
+          "color-warning-foreground": "var(--warning-foreground)",
+          "color-info": "var(--info)",
+          "color-info-foreground": "var(--info-foreground)",
+          "color-border": "var(--border)",
+          "color-input": "var(--input)",
+          "color-ring": "var(--ring)",
+          "color-chart-1": "var(--chart-1)",
+          "color-chart-2": "var(--chart-2)",
+          "color-chart-3": "var(--chart-3)",
+          "color-chart-4": "var(--chart-4)",
+          "color-chart-5": "var(--chart-5)",
+          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-md": "calc(var(--radius) - 2px)",
+          "radius-lg": "var(--radius)",
+          "radius-xl": "calc(var(--radius) + 4px)",
+          "font-sans": "var(--font-inter), system-ui, sans-serif",
+          "font-display": "var(--font-neue-haas), var(--font-inter), system-ui, sans-serif"
+        },
+        "light": {
+          "radius": "0.75rem",
+          "background": "oklch(0.994 0.003 325)",
+          "foreground": "oklch(0.22 0.005 300)",
+          "card": "oklch(0.994 0.003 325)",
+          "card-foreground": "oklch(0.22 0.005 300)",
+          "popover": "oklch(0.994 0.003 325)",
+          "popover-foreground": "oklch(0.22 0.005 300)",
+          "primary": "oklch(0.508 0.234 288.5)",
+          "primary-foreground": "oklch(0.99 0.005 320)",
+          "secondary": "oklch(0.967 0.006 300)",
+          "secondary-foreground": "oklch(0.405 0.030 300)",
+          "muted": "oklch(0.967 0.006 300)",
+          "muted-foreground": "oklch(0.520 0.030 300)",
+          "accent": "oklch(0.943 0.030 288.5)",
+          "accent-foreground": "oklch(0.445 0.215 288.5)",
+          "destructive": "oklch(0.50 0.20 18)",
+          "destructive-foreground": "oklch(0.99 0 0)",
+          "success": "oklch(0.50 0.14 155)",
+          "success-foreground": "oklch(0.99 0 0)",
+          "warning": "oklch(0.75 0.15 75)",
+          "warning-foreground": "oklch(0.24 0.04 75)",
+          "info": "oklch(0.50 0.16 260)",
+          "info-foreground": "oklch(0.99 0 0)",
+          "success-bg": "oklch(0.96 0.03 155)",
+          "warning-bg": "oklch(0.96 0.04 75)",
+          "info-bg": "oklch(0.96 0.03 260)",
+          "destructive-bg": "oklch(0.96 0.03 18)",
+          "border": "oklch(0.928 0.010 300)",
+          "input": "oklch(0.928 0.010 300)",
+          "ring": "oklch(0.508 0.234 288.5)",
+          "chart-1": "oklch(0.508 0.234 288.5)",
+          "chart-2": "oklch(0.60 0.16 260)",
+          "chart-3": "oklch(0.62 0.14 155)",
+          "chart-4": "oklch(0.75 0.15 75)",
+          "chart-5": "oklch(0.823 0.105 288.5)"
+        }
+      },
+      "css": {
+        "@layer base": {
+          "body": {
+            "line-height": "1.6"
+          },
+          "h1, h2, h3, h4": {
+            "font-family": "var(--font-display)",
+            "line-height": "1.15",
+            "letter-spacing": "-0.011em",
+            "font-weight": "600"
+          },
+          ".prose-readable": {
+            "max-width": "65ch"
+          },
+          "@media (prefers-reduced-motion: reduce)": {
+            "*, *::before, *::after": {
+              "animation-duration": "0.01ms !important",
+              "transition-duration": "0.01ms !important"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "files": [{ "path": "components/ui/button.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "files": [{ "path": "components/ui/input.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "files": [{ "path": "components/ui/textarea.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "dependencies": ["radix-ui"],
+      "files": [{ "path": "components/ui/label.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "dependencies": ["lucide-react", "radix-ui"],
+      "files": [{ "path": "components/ui/select.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "files": [{ "path": "components/ui/card.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "files": [{ "path": "components/ui/badge.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "dependencies": ["class-variance-authority"],
+      "files": [{ "path": "components/ui/alert.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "files": [{ "path": "components/ui/table.tsx", "type": "registry:ui" }]
+    }
+  ]
+}
