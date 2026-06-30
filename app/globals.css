@@ -104,8 +104,24 @@
   }
   body {
     @apply bg-background text-foreground;
+    line-height: 1.6;
   }
   html {
     @apply font-sans;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    line-height: 1.15;
+    letter-spacing: -0.011em;
+    font-weight: 600;
+  }
+  .prose-readable {
+    max-width: 65ch;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
