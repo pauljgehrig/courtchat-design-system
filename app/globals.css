@@ -50,6 +50,19 @@
   --chart-3: oklch(0.62 0.14 155);
   --chart-4: oklch(0.75 0.15 75);
   --chart-5: oklch(0.823 0.105 288.5);
+
+  /* Body text — softer than heading near-black (unbail.org #48454e) */
+  --body-text: oklch(0.397 0.015 300.9);
+
+  /* Purple surface-tint scale — primary at 5/8/11% alpha */
+  --surface-5: oklch(0.508 0.234 288.5 / 0.05);
+  --surface-8: oklch(0.508 0.234 288.5 / 0.08);
+  --surface-11: oklch(0.508 0.234 288.5 / 0.11);
+
+  /* Purple container solids (unbail.org) */
+  --container: oklch(0.917 0.047 300.2);
+  --container-foreground: oklch(0.243 0.141 285.7);
+  --container-lite: oklch(0.984 0.008 325.6);
 }
 
 /* Dark-ready: authored later. Structure only — components reference semantic
@@ -90,12 +103,19 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-body-text: var(--body-text);
+  --color-surface-5: var(--surface-5);
+  --color-surface-8: var(--surface-8);
+  --color-surface-11: var(--surface-11);
+  --color-container: var(--container);
+  --color-container-foreground: var(--container-foreground);
+  --color-container-lite: var(--container-lite);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-display: var(--font-neue-haas), var(--font-inter), system-ui, sans-serif;
+  --font-sans: var(--font-neue-haas-text, var(--font-inter)), system-ui, sans-serif;
+  --font-display: var(--font-neue-haas, var(--font-inter)), system-ui, sans-serif;
 }
 
 @layer base {
@@ -103,7 +123,8 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background;
+    color: var(--body-text);
     line-height: 1.6;
   }
   html {
@@ -111,6 +132,7 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
+    color: var(--foreground);
     line-height: 1.15;
     letter-spacing: -0.011em;
     font-weight: 600;

@@ -40,9 +40,18 @@ npm run registry:build    # rebuild public/r/*.json from components/ui/
 | `--success` / `--success-foreground` | Confirmed/resolved states |
 | `--warning` / `--warning-foreground` | Caution states |
 | `--info` / `--info-foreground` | Informational states |
+| `--body-text` | Softer body-copy color (`#48454e`); headings use `--foreground` |
+| `--surface-5/8/11` | Primary purple at 5/8/11% alpha — tinted section backgrounds |
+| `--container` | Purple-100 container surface (`#e8ddff`) |
+| `--container-foreground` | Deep purple text on container (`#21005e`) |
+| `--container-lite` | Near-white container surface (`#fdf8fd`) |
 | `--border` | Default border color |
 | `--input` | Input field border |
 | `--ring` | Focus ring (matches `--primary`) |
+
+#### Body font
+
+`--font-sans` prefers Neue Haas Grotesk Display Text (`--font-neue-haas-text`) with Inter as fallback. The nested var fallback `var(--font-neue-haas-text, var(--font-inter))` ensures Inter governs body copy until the licensed NHGD Text files are added — an undefined custom property never breaks the font-family. See `app/fonts/README.md` for the drop-in steps.
 
 #### `*-bg` fill tokens — not mapped to Tailwind utilities
 
@@ -68,7 +77,7 @@ These components have CourtChat-specific variants, density, or visual treatment 
 - **label** — required indicator; pairs with input/textarea
 - **select** — styled trigger/content matching input height
 - **card** — shell radius (`--radius-lg`), soft shadow
-- **badge** — default/secondary/outline/destructive/success/warning/info variants
+- **badge** — default/secondary/outline/destructive/success/warning/info variants; `shape` prop: `default` (rounded-md) or `pill` (rounded-full, wider padding)
 - **alert** — default/destructive/success/warning/info; icon + text, not color-only
 - **table** — compact-core density; sticky header variant; zebra striping token
 

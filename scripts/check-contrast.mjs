@@ -22,6 +22,8 @@ const PAIRS = [
   ["warning-foreground", "warning-bg", 4.5, "warning tint text"],
   ["info", "info-bg", 4.5, "info tint text"],
   ["destructive", "destructive-bg", 4.5, "destructive tint text"],
+  ["body-text", "background", 4.5, "body text"],
+  ["container-foreground", "container", 4.5, "on-container text"],
 ];
 let failed = false;
 for (const [fg, bg, min, label] of PAIRS) {
