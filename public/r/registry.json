@@ -1,0 +1,79 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "courtchat",
+  "homepage": "https://courtchat-design-system.vercel.app",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:style",
+      "title": "CourtChat brand theme",
+      "description": "Purple OKLCH token layer + @theme mapping.",
+      "files": [
+        {
+          "path": "registry/new-york/theme/globals.css",
+          "type": "registry:file",
+          "target": "app/globals.css"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "files": [{ "path": "components/ui/button.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "files": [{ "path": "components/ui/input.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "files": [{ "path": "components/ui/textarea.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "dependencies": ["radix-ui"],
+      "files": [{ "path": "components/ui/label.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "dependencies": ["lucide-react", "radix-ui"],
+      "files": [{ "path": "components/ui/select.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "files": [{ "path": "components/ui/card.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "files": [{ "path": "components/ui/badge.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "dependencies": ["class-variance-authority"],
+      "files": [{ "path": "components/ui/alert.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "registryDependencies": ["theme"],
+      "files": [{ "path": "components/ui/table.tsx", "type": "registry:ui" }]
+    }
+  ]
+}
