@@ -18,6 +18,7 @@ const badgeVariants = cva(
       },
       shape: {
         default: "rounded-md",
+        // px-3 overrides the base px-2.5 via tailwind-merge in cn() — keep cn(), not clsx
         pill: "rounded-full px-3",
       },
     },

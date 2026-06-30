@@ -77,7 +77,7 @@ These components have CourtChat-specific variants, density, or visual treatment 
 - **label** — required indicator; pairs with input/textarea
 - **select** — styled trigger/content matching input height
 - **card** — shell radius (`--radius-lg`), soft shadow
-- **badge** — default/secondary/outline/destructive/success/warning/info variants; `shape` prop: `default` (rounded-md) or `pill` (rounded-full, wider padding)
+- **badge** — default/secondary/destructive/success/warning/info variants; `shape` prop: `default` (rounded-md) or `pill` (rounded-full, wider padding)
 - **alert** — default/destructive/success/warning/info; icon + text, not color-only
 - **table** — compact-core density; sticky header variant; zebra striping token
 
