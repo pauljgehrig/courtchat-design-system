@@ -207,25 +207,58 @@ Avatar, Skeleton.
 
 ---
 
-## 7. Deliverable structure
+## 7. Deliverable structure & distribution
+
+This repo is **both** the showcase app **and** a custom shadcn registry — the
+single source of truth other repos pull from.
 
 ```
 courtchat-design-system/
-├── globals.css            # OKLCH token layer (:root + .dark stub) + @theme
-├── tailwind.config.ts     # font vars, radius, shadow, animation extensions
-├── components.json        # shadcn config
-├── lib/utils.ts           # cn() helper
-├── components/ui/         # Tier 1 customized components
+├── registry.json              # shadcn registry manifest (items + deps)
+├── registry/
+│   └── new-york/              # registry style namespace
+│       ├── theme/             # token item: globals.css vars + tailwind preset
+│       ├── ui/                # Tier 1 component source (button, card, …)
+│       └── blocks/            # optional composed examples
+├── public/r/                  # BUILT registry JSON (served as static files)
+│   ├── theme.json
+│   └── button.json …
 ├── app/
-│   ├── layout.tsx         # font wiring (Inter live, Neue Haas drop-in)
-│   └── page.tsx           # showcase page rendering all components
-├── docs/
-│   └── superpowers/specs/ # this spec
-└── README.md              # usage doc: tokens, theming per-surface, do/don'ts
+│   ├── globals.css            # OKLCH token layer (:root + .dark stub) + @theme
+│   ├── layout.tsx             # font wiring (Inter live, Neue Haas drop-in)
+│   └── page.tsx               # showcase = living documentation
+├── components/ui/             # local copies used by the showcase
+├── lib/utils.ts              # cn() helper
+├── components.json            # shadcn config (this repo)
+├── docs/superpowers/specs/    # this spec
+└── README.md                  # usage + "how to consume in another repo"
 ```
 
+### 7.1 Distribution: custom shadcn registry
+
+Chosen mechanism: **custom shadcn registry** (copy-paste, not a dependency).
+
+- Components + theme are defined once here and published as registry items via
+  `registry.json`, built with `npx shadcn build` into `public/r/*.json`, served
+  as static files (the showcase app's own deploy URL hosts them).
+- **Consuming repo** runs:
+  `npx shadcn@latest add https://<registry-url>/r/button.json`
+  and receives the **source**, which it then owns and can customize locally.
+- A **`theme` registry item** (`registryDependencies` of every component) carries
+  the tokens (CSS vars + Tailwind preset), so a new repo gets the full brand
+  foundation in one `add`. Components declare it as a dependency, so pulling any
+  component pulls the theme automatically.
+- **No version lock-in / per-repo flexibility:** repos take source at a point in
+  time and diverge freely. Re-running `add` later re-pulls updated source (the
+  shadcn-native "update" path); there is no runtime npm dependency to bump.
+- **Trade-off accepted:** updates are pull-based, not pushed — repos don't auto-
+  receive brand changes. Documented in README; acceptable for a small org with
+  few consuming repos. (If central push-updates become necessary later, the
+  hybrid "npm tokens + registry components" path is the upgrade — out of scope now.)
+
 The showcase `page.tsx` doubles as living documentation: open it, see the whole
-system. Target host: **Next.js** (CourtChat frontend is React).
+system. Target host: **Next.js** (CourtChat frontend is React) — also the
+registry host.
 
 ---
 
@@ -245,3 +278,6 @@ system. Target host: **Next.js** (CourtChat frontend is React).
 - Confirm Next.js as host (assumed). If Vite/CRA, font wiring + showcase shell differ.
 - Tune exact OKLCH values against AA contrast during build.
 - Neue Haas license/files: not needed now; spec stays Inter-live / Neue-Haas-ready.
+- Registry host URL: the showcase app's deploy URL serves `public/r/*.json`.
+  Decide where it deploys (Vercel assumed for a Next.js app); README's consume
+  instructions use that URL.
