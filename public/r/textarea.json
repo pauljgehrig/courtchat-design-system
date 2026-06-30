@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "textarea",
   "registryDependencies": [
-    "theme"
+    "https://courtchat-design-system.vercel.app/r/theme.json"
   ],
   "files": [
     {

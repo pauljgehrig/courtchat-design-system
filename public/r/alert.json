@@ -5,7 +5,7 @@
     "class-variance-authority"
   ],
   "registryDependencies": [
-    "theme"
+    "https://courtchat-design-system.vercel.app/r/theme.json"
   ],
   "files": [
     {

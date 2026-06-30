@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input",
   "registryDependencies": [
-    "theme"
+    "https://courtchat-design-system.vercel.app/r/theme.json"
   ],
   "files": [
     {
