@@ -18,6 +18,10 @@ const PAIRS = [
   ["success-foreground", "success", 4.5, "success"],
   ["warning-foreground", "warning", 4.5, "warning"],
   ["info-foreground", "info", 4.5, "info"],
+  ["success", "success-bg", 4.5, "success tint text"],
+  ["warning-foreground", "warning-bg", 4.5, "warning tint text"],
+  ["info", "info-bg", 4.5, "info tint text"],
+  ["destructive", "destructive-bg", 4.5, "destructive tint text"],
 ];
 let failed = false;
 for (const [fg, bg, min, label] of PAIRS) {

@@ -2,8 +2,6 @@
 
 A component library and token layer for CourtChat products, built on Next.js, Tailwind v4, and shadcn new-york/Radix. It ships an OKLCH purple token scale, Inter body type with a Neue Haas Grotesk Display drop-in, customized Tier-1 components with compact-core density on data surfaces, and a custom shadcn registry at `public/r/` so any consuming repo can pull source components directly via `npx shadcn add`.
 
-> **Foundational decisions:** `docs/superpowers/specs/2026-06-30-courtchat-design-system-design.md`
-
 ---
 
 ## Run locally
@@ -24,6 +22,8 @@ npm run registry:build    # rebuild public/r/*.json from components/ui/
 ---
 
 ## Foundations
+
+> **Foundational decisions:** [design spec](docs/superpowers/specs/2026-06-30-courtchat-design-system-design.md)
 
 ### Semantic tokens (`app/globals.css` `:root`)
 
@@ -62,8 +62,8 @@ npm run registry:build    # rebuild public/r/*.json from components/ui/
 
 These components have CourtChat-specific variants, density, or visual treatment beyond the shadcn new-york baseline:
 
-- **button** — primary/secondary/outline/ghost/destructive; purple primary token; `size` prop (sm/default/lg/icon)
-- **input** — focus ring matches `--ring`; error state uses label + icon, not color alone
+- **button** — primary/secondary/outline/ghost/link/destructive; purple primary token; `size` prop (sm/default/lg/icon)
+- **input** — focus ring matches `--ring`; error state = destructive border + destructive focus ring + `aria-invalid` (exposed to assistive tech). Pair the field with a visible error message so sighted low-vision users aren't relying on the color shift alone.
 - **textarea** — same token treatment as input
 - **label** — required indicator; pairs with input/textarea
 - **select** — styled trigger/content matching input height
@@ -105,7 +105,7 @@ npx shadcn@latest add https://courtchat-design-system.vercel.app/r/table.json
 - You receive **source files** — you own and customize them. This is not an npm package.
 - Re-run `add` to pull an updated version from the registry.
 - **No runtime npm dependency** on this repo.
-- Each component's `registryDependencies` and `dependencies` fields declare what they need, so shadcn installs those automatically (e.g. Radix primitives).
+- Each component's `registryDependencies` and `dependencies` fields declare what they need, so shadcn installs those automatically (e.g. theme tokens, Radix primitives).
 
 ---
 
